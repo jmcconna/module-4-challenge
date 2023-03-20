@@ -63,6 +63,7 @@ function startTimer() {
         } else {
             clearInterval(timeInterval);
             countdownTimerEl.textContent = "TIME'S UP!"
+            endQuiz();
         }
 
     }, 1000);
