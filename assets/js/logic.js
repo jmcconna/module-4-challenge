@@ -74,7 +74,6 @@ function getQuestion() {
     //decrement the number of questions left in the quiz
     questionsLeft--;
     
-
     //I *could* make this randomly select a question, but that is not in the criteria
     //Which number question are we on?
     var questionNumber = "question".concat(totalQuestions-questionsLeft);
@@ -123,8 +122,6 @@ function getQuestion() {
 
 function checkAnswer(optionString, answerString) {
     
-   
-
     if (optionString === answerString) {
         //Tell them they got the correct answer
         rightOrWrong.textContent = "Correct!";   
@@ -132,7 +129,7 @@ function checkAnswer(optionString, answerString) {
     } else {
         //tell them they got the wrong answer
         rightOrWrong.textContent = "Wrong!";
-        timeLeft = timeLeft -5;
+        timeLeft = timeLeft -10;
         console.log("Wrong");
     }
 
@@ -151,7 +148,14 @@ function checkAnswer(optionString, answerString) {
     }
     //Else, if there's another question to show, show it
     else{getQuestion();}
+
+    //clear the rightOrWrong text
+    setTimeout(function () {
+        rightOrWrong.textContent = "";
+    }, 1000)
 }
+
+
 
 function endQuiz() {
 
@@ -161,23 +165,42 @@ function endQuiz() {
     clearInterval(timeInterval); 
     countdownTimerEl.textContent = "Your final score is " +score;
 
-    //Enter initials in field and click button to save it on the high scores page
-    var submitForm = document.createElement("form");
-    optionAPlaceholder.appendChild(submitForm);
+    questionTextEl.textContent = "All done! Enter your initials to save your score."
 
+    var inputField = document.createElement("input");
+    optionAPlaceholder.appendChild(inputField);
 
-//     <form action="/action_page.php">
-//   <label for="fname">First name:</label><br>
-//   <input type="text" id="fname" value="John"><br><br>
-//   <input type="submit" value="Submit">
-// </form>
+    var submitButton = document.createElement("button");
+    submitButton.textContent = "Submit";
+    optionBPlaceholder.appendChild(submitButton);
+    submitButton.addEventListener("click", function(){
+        event.stopPropagation();
 
+        //save high score to local storage
+    var initials = inputField.value;
+    var nameAndScore = {
+        initialsKey: initials,
+        scoreKey: score
+    }
 
-// //     var submitButton = document.createElement("button");
-// //     submitButton.textContent = "Submit";
-// //     optionAPlaceholder.appendChild(submitButton);
-// //     submitButton.addEventListener("submit", function(){
-// //         event.stopPropagation();
+    console.log("Score is: "+score);
+    console.log("Name is: "+inputField.value);
 
-// })
+    //add the latest score to local storage
+
+    localStorage.setItem("latestScore", JSON.stringify(nameAndScore));
+
+        //go to high score page
+    console.log("Current URL: "+window.location.href);
+    window.location.href = "highscores.html";
+    })
+
+    var highScores = JSON.parse(localStorage.getItem("highScoreArray"));
+   var latestScore = JSON.parse(localStorage.getItem("latestScore"));
+
+   console.log(highScores);
+   console.log(latestScore);
 }
+
+
+

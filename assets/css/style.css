@@ -15,3 +15,12 @@ button {
     font-size: 16pt;
     border-radius: 5px;
 }
+
+#rightOrWrong {
+    color: gray
+    
+}
+
+div {
+    margin: 10px;
+}
