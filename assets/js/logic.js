@@ -7,11 +7,14 @@ var optionBPlaceholder = document.querySelector("#optionBPlaceholder");
 var optionCPlaceholder = document.querySelector("#optionCPlaceholder");
 var optionDPlaceholder = document.querySelector("#optionDPlaceholder");
 var countdownTimerEl = document.querySelector("#countdownTimer");
-var totalTime = 30;
+var rightOrWrong = document.querySelector("#rightOrWrong");
+var totalTime = 60;
 var timeLeft;
+var timeInterval;
 var totalQuestions = 3;
 var questionsLeft;
 var currentQuestion;
+var score;
 
 
 
@@ -50,7 +53,7 @@ function startTimer() {
     //set the starting number of questions
     questionsLeft = totalQuestions;
     //create a timer using setInterval to do execute this function every 1000ms
-    var timeInterval = setInterval(function() {
+    timeInterval = setInterval(function() {
         if(timeLeft >1) {
             countdownTimerEl.textContent = timeLeft + " seconds remaining";
             timeLeft--;
@@ -89,7 +92,7 @@ function getQuestion() {
     optionAPlaceholder.appendChild(optionAButton);
     optionAButton.addEventListener("click", function(){
         event.stopPropagation();
-        checkAnswer();
+        checkAnswer(currentQuestion.optionA, currentQuestion.correctAnswer);
     })
 
     var optionBButton = document.createElement("button");
@@ -97,7 +100,7 @@ function getQuestion() {
     optionBPlaceholder.appendChild(optionBButton);
     optionBButton.addEventListener("click", function(){
         event.stopPropagation();
-        checkAnswer();
+        checkAnswer(currentQuestion.optionB, currentQuestion.correctAnswer);
     })
 
     var optionCButton = document.createElement("button");
@@ -105,7 +108,7 @@ function getQuestion() {
     optionCPlaceholder.appendChild(optionCButton);
     optionCButton.addEventListener("click", function(){
         event.stopPropagation();
-        checkAnswer();
+        checkAnswer(currentQuestion.optionC, currentQuestion.correctAnswer);
     })
 
     var optionDButton = document.createElement("button");
@@ -113,30 +116,68 @@ function getQuestion() {
     optionDPlaceholder.appendChild(optionDButton);
     optionDButton.addEventListener("click", function(){
         event.stopPropagation();
-        checkAnswer();
+        checkAnswer(currentQuestion.optionD, currentQuestion.correctAnswer);
     })
 
 }
 
 function checkAnswer(optionString, answerString) {
+    
+   
+
     if (optionString === answerString) {
         //Tell them they got the correct answer
-
-        //If that was the last question, then end the quiz
-        if (questionsLeft === 0) {
-            endQuiz();
-        }
-        //Else, if there's another question to show, show it
-        else{getQuestion();}
-        
+        rightOrWrong.textContent = "Correct!";   
+        console.log("Correct"); 
+    } else {
+        //tell them they got the wrong answer
+        rightOrWrong.textContent = "Wrong!";
+        timeLeft = timeLeft -5;
+        console.log("Wrong");
     }
 
+     //remove all the buttons from the previous question
+     optionAPlaceholder.removeChild(optionAPlaceholder.firstChild);
+     optionBPlaceholder.removeChild(optionBPlaceholder.firstChild);
+     optionCPlaceholder.removeChild(optionCPlaceholder.firstChild);
+     optionDPlaceholder.removeChild(optionDPlaceholder.firstChild);
+
+     //clear the question
+     questionTextEl.textContent = "";
+
+    //If that was the last question, then end the quiz
+    if (questionsLeft === 0) {
+        endQuiz();
+    }
+    //Else, if there's another question to show, show it
+    else{getQuestion();}
 }
 
 function endQuiz() {
 
+    console.log("End quiz has been called");
     //stop the timer and save the time remaining as a score
+    score = timeLeft;
+    clearInterval(timeInterval); 
+    countdownTimerEl.textContent = "Your final score is " +score;
 
-    //go to the highscores page, and give the player the option to save score
+    //Enter initials in field and click button to save it on the high scores page
+    var submitForm = document.createElement("form");
+    optionAPlaceholder.appendChild(submitForm);
 
+
+//     <form action="/action_page.php">
+//   <label for="fname">First name:</label><br>
+//   <input type="text" id="fname" value="John"><br><br>
+//   <input type="submit" value="Submit">
+// </form>
+
+
+// //     var submitButton = document.createElement("button");
+// //     submitButton.textContent = "Submit";
+// //     optionAPlaceholder.appendChild(submitButton);
+// //     submitButton.addEventListener("submit", function(){
+// //         event.stopPropagation();
+
+// })
 }

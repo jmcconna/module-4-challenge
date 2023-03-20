@@ -1,0 +1,17 @@
+main {
+    justify-content: space-around;
+    text-align: center;
+}
+
+section {
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+button {
+    background-color: purple;
+    color: white;
+    font-size: 16pt;
+    border-radius: 5px;
+}
