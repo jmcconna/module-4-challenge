@@ -4,14 +4,14 @@
 
    //retrieve the high score array when highscores.html is loaded
    var highScores = JSON.parse(localStorage.getItem("highScoreArray"));
-   var latestScore = JSON.parse(localStorage.getItem("latestScore"));
+//    var latestScore = JSON.parse(localStorage.getItem("latestScore"));
 
-   //add latest score to high score list
-   highScores.push(latestScore);
-   console.log("After appending the latest score: " + highScores);
+//    //add latest score to high score list
+//    highScores.push(latestScore);
+//    console.log("After appending the latest score: " + highScores);
 
-   //save the updated high score list
-   localStorage.setItem("highScoreArray", JSON.stringify(highScores));
+//    //save the updated high score list
+//    localStorage.setItem("highScoreArray", JSON.stringify(highScores));
 
     //sort high scores array
     function compareScores (a, b) {

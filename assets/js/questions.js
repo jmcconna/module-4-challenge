@@ -10,20 +10,20 @@ var question1 = {
 };
 
 var question2 = {
-    questionText: "Where?",
-    optionA: "Timbuku",
-    optionB: "USA",
-    optionC: "Russia",
-    optionD: "China",
-    correctAnswer: "USA"
+    questionText: "How do you create a function in JavaScript?",
+    optionA: "function:myFunction()",
+    optionB: "function myFunction()",
+    optionC: "function = myFunction()",
+    optionD: "myFunction = var function()",
+    correctAnswer: "function myFunction()"
 };
 
 var question3 = {
-    questionText: "What?",
-    optionA: "Stuff",
-    optionB: "Things",
-    optionC: "Nouns",
-    optionD: "Proper Nouns",
+    questionText: "How do you call a function named myFunction?",
+    optionA: "call = myFunction now",
+    optionB: "call myFunction",
+    optionC: "call function myFunction",
+    optionD: "myFunction()",
     correctAnswer: "Stuff"
 };
 

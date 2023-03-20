@@ -178,7 +178,7 @@ function endQuiz() {
 
         //save high score to local storage
     var initials = inputField.value;
-    var nameAndScore = {
+    var latestScore = {
         initialsKey: initials,
         scoreKey: score
     }
@@ -186,9 +186,11 @@ function endQuiz() {
     console.log("Score is: "+score);
     console.log("Name is: "+inputField.value);
 
-    //add the latest score to local storage
 
-    localStorage.setItem("latestScore", JSON.stringify(nameAndScore));
+    //retrieve the high score array, append latest, and save it to local storage
+    var highScores = JSON.parse(localStorage.getItem("highScoreArray"));
+    highScores.push(latestScore);
+    localStorage.setItem("highScoreArray", JSON.stringify(highScores));
 
         //go to high score page
     console.log("Current URL: "+window.location.href);
