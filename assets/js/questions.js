@@ -1,12 +1,12 @@
 //This seems like something that should be done with object classes, but we haven't learned that yet
 //create question objects - with answers and a correct answer
 var question1 = {
-    questionText: "Who?",
-    optionA: "Me",
-    optionB: "You",
-    optionC: "Them",
-    optionD: "Nobody",
-    correctAnswer: "Me"
+    questionText: "Inside which HTML element do we put the JavaScript?",
+    optionA: "<script>",
+    optionB: "<body>",
+    optionC: "<a>",
+    optionD: "<href>",
+    correctAnswer: "<script>"
 };
 
 var question2 = {

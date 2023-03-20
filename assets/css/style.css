@@ -24,3 +24,12 @@ button {
 div {
     margin: 10px;
 }
+
+ul {
+    list-style-type: none;
+}
+
+ul > li:nth-last-of-type(odd){
+    background-color: purple;
+    color: white;
+}
