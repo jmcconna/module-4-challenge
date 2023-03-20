@@ -3,13 +3,16 @@ var questionBoxEl = document.querySelector("#questionBox");
 var questionTextEl = document.querySelector("#questionText");
 var answerBoxEl = document.querySelector("#answerBox");
 var optionAPlaceholder = document.querySelector("#optionAPlaceholder");
-var optionAPlaceholder = document.querySelector("#optionBPlaceholder");
-var optionAPlaceholder = document.querySelector("#optionCPlaceholder");
-var optionAPlaceholder = document.querySelector("#optionDPlaceholder");
+var optionBPlaceholder = document.querySelector("#optionBPlaceholder");
+var optionCPlaceholder = document.querySelector("#optionCPlaceholder");
+var optionDPlaceholder = document.querySelector("#optionDPlaceholder");
 var countdownTimerEl = document.querySelector("#countdownTimer");
+var totalTime = 30;
 var timeLeft;
+var totalQuestions = 3;
+var questionsLeft;
 var currentQuestion;
-var usedQuestions = [];
+
 
 
 //initial page setup function
@@ -25,6 +28,7 @@ function initialSetup() {
     startButton.addEventListener("click", function(){
         event.stopPropagation();
         startQuiz();
+        startButton.remove();
     })
 }
 //call initial page setup function
@@ -36,12 +40,15 @@ function startQuiz() {
     startTimer();
     //Call function to retrieve the first question
     getQuestion();
+    
 }
 
 //function to create and start the countdown timer
 function startTimer() {
     //set the starting time in seconds
-    timeLeft = 30;
+    timeLeft = totalTime;
+    //set the starting number of questions
+    questionsLeft = totalQuestions;
     //create a timer using setInterval to do execute this function every 1000ms
     var timeInterval = setInterval(function() {
         if(timeLeft >1) {
@@ -61,10 +68,17 @@ function startTimer() {
 
 function getQuestion() {
 
+    //decrement the number of questions left in the quiz
+    questionsLeft--;
+    
 
-    //choose a random question from the array, check it against the usedQuestions list
+    //I *could* make this randomly select a question, but that is not in the criteria
+    //Which number question are we on?
+    var questionNumber = "question".concat(totalQuestions-questionsLeft);
+    console.log(questionNumber);
 
-    currentQuestion = JSON.parse(localStorage.getItem("question1"));
+    //pull the question from local storage
+    currentQuestion = JSON.parse(localStorage.getItem(questionNumber));
 
     //set the question text
     questionTextEl.textContent = currentQuestion.questionText;
@@ -104,7 +118,25 @@ function getQuestion() {
 
 }
 
-function checkAnswer() {
+function checkAnswer(optionString, answerString) {
+    if (optionString === answerString) {
+        //Tell them they got the correct answer
 
+        //If that was the last question, then end the quiz
+        if (questionsLeft === 0) {
+            endQuiz();
+        }
+        //Else, if there's another question to show, show it
+        else{getQuestion();}
+        
+    }
+
+}
+
+function endQuiz() {
+
+    //stop the timer and save the time remaining as a score
+
+    //go to the highscores page, and give the player the option to save score
 
 }
