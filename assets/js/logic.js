@@ -160,6 +160,15 @@ function checkAnswer(optionString, answerString) {
 
 function endQuiz() {
 
+    // //remove all the buttons from the previous question
+    // optionAPlaceholder.removeChild(optionAPlaceholder.firstChild);
+    // optionBPlaceholder.removeChild(optionBPlaceholder.firstChild);
+    // optionCPlaceholder.removeChild(optionCPlaceholder.firstChild);
+    // optionDPlaceholder.removeChild(optionDPlaceholder.firstChild);
+
+    // //clear the question
+    // questionTextEl.textContent = "";
+    
     console.log("End quiz has been called");
     //stop the timer and save the time remaining as a score
     score = timeLeft;
