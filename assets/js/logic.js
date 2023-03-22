@@ -8,7 +8,7 @@ var optionCPlaceholder = document.querySelector("#optionCPlaceholder");
 var optionDPlaceholder = document.querySelector("#optionDPlaceholder");
 var countdownTimerEl = document.querySelector("#countdownTimer");
 var rightOrWrong = document.querySelector("#rightOrWrong");
-var totalTime = 20;
+var totalTime = 60;
 var timeLeft;
 var timeInterval;
 var totalQuestions = 3;
