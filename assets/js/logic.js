@@ -8,7 +8,7 @@ var optionCPlaceholder = document.querySelector("#optionCPlaceholder");
 var optionDPlaceholder = document.querySelector("#optionDPlaceholder");
 var countdownTimerEl = document.querySelector("#countdownTimer");
 var rightOrWrong = document.querySelector("#rightOrWrong");
-var totalTime = 60;
+var totalTime = 20;
 var timeLeft;
 var timeInterval;
 var totalQuestions = 3;
@@ -162,10 +162,10 @@ function checkAnswer(optionString, answerString) {
 function endQuiz() {
 
     // //remove all the buttons from the previous question
-    // optionAPlaceholder.removeChild(optionAPlaceholder.firstChild);
-    // optionBPlaceholder.removeChild(optionBPlaceholder.firstChild);
-    // optionCPlaceholder.removeChild(optionCPlaceholder.firstChild);
-    // optionDPlaceholder.removeChild(optionDPlaceholder.firstChild);
+    optionAPlaceholder.removeChild(optionAPlaceholder.firstChild);
+    optionBPlaceholder.removeChild(optionBPlaceholder.firstChild);
+    optionCPlaceholder.removeChild(optionCPlaceholder.firstChild);
+    optionDPlaceholder.removeChild(optionDPlaceholder.firstChild);
 
     // //clear the question
     // questionTextEl.textContent = "";
@@ -199,7 +199,7 @@ function endQuiz() {
 
 
     //retrieve the high score array, append latest, and save it to local storage
-    var highScores = JSON.parse(localStorage.getItem("highScoreArray"));
+    var highScores = JSON.parse(localStorage.getItem("highScoreArray")) ? JSON.parse(localStorage.getItem("highScoreArray")):[]
     console.log(highScores)
     highScores.push(latestScore);
     localStorage.setItem("highScoreArray", JSON.stringify(highScores));
