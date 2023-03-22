@@ -52,14 +52,15 @@ function startTimer() {
     timeLeft = totalTime;
     //set the starting number of questions
     questionsLeft = totalQuestions;
+
+    countdownTimerEl.textContent = timeLeft + " seconds remaining";
     //create a timer using setInterval to do execute this function every 1000ms
     timeInterval = setInterval(function() {
+        timeLeft--;
         if(timeLeft >1) {
             countdownTimerEl.textContent = timeLeft + " seconds remaining";
-            timeLeft--;
         } else if (timeLeft ===1) {
             countdownTimerEl.textContent = timeLeft + " second remaining";
-            timeLeft--;
         } else {
             clearInterval(timeInterval);
             countdownTimerEl.textContent = "TIME'S UP!"
@@ -199,6 +200,7 @@ function endQuiz() {
 
     //retrieve the high score array, append latest, and save it to local storage
     var highScores = JSON.parse(localStorage.getItem("highScoreArray"));
+    console.log(highScores)
     highScores.push(latestScore);
     localStorage.setItem("highScoreArray", JSON.stringify(highScores));
 
